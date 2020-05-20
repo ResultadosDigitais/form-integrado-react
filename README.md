@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Formulário Integrado RDSM em aplicações React
 
-## Available Scripts
+## Descrição
+Este documento descreve os passos para inserir um formulário integrado gerado pelo RDSM em uma aplicação React.
 
-In the project directory, you can run:
+## Procedimentos
 
-### `yarn start`
+Quando um formulário é criado no [RDSM](https://app.rdstation.com.br/formularios), um código como o abaixo é gerado:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```js
+<div role="main" id="my-form-aeiou6de172d1e9c5b6"></div>
+<script type="text/javascript" src="https://abcd.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+<script type="text/javascript"> new RDStationForms('my-form-aeiou6de172d1e9c5b6', 'UA-36276574-1').createForm();</script>
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Passo 1
 
-### `yarn test`
+Insira a tag script com o arquivo `rdstation-forms.min.js` dentro da tag `body` do seu `index.html` antes do fechamento da tag:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```html
+    ...
 
-### `yarn build`
+    <script type="text/javascript" src="https://abcd.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+  </body>
+</html>
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Passo 2
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+No componente React que você deseja renderizar o formulário, insira a `div` gerada. Para este exemplo foi usado o arquivo `src/App.js`:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+...
 
-### `yarn eject`
+render() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>Formulário integrado RDSM<br />Dentro de um React App</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+        <div role="main" id="my-form-aeiou6de172d1e9c5b6"></div>
+      </header>
+    </div>
+  );
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Passo 3
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Neste passo vamos usar apenas parte do código gerado pelo RDSM.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Com base no nosso exemplo vamos usar apenas esse trecho do código retirado da tag `script`:
+```js
+new RDStationForms('my-form-aeiou6de172d1e9c5b6', 'UA-36276574-1').createForm();
+```
 
-## Learn More
+Mas antes de inserir o código, adicione o objeto `window` antes da chamada `RDStationForms` deixando o código desta forma:
+```js
+new window.RDStationForms('my-form-aeiou6de172d1e9c5b6', 'UA-36276574-1').createForm();
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Agora insira o código dentro da função `componentDidMount()`:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+...
+  componentDidMount() {
+    if (window.RDStationForms) {
+      new window.RDStationForms('teste-caldas-ea31f26de172d1e9c5b6', 'UA-17276574-1').createForm()
+    }
+  }
+```
 
-### Code Splitting
+O código foi inserido dentro dessa função para nos certificarmos que o mesmo só será executado depois que o componente tenha sido devidamente renderizado e que todos os elementos estão prontos.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Como segundo fator de segurança, o código foi inserido dentro de uma condicional `if` pra garantir que o objeto está disponível para a chamada.
 
-### Analyzing the Bundle Size
+### Passo 4
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Acesse a página onde o formulário foi inserido. Neste ponto o formulário deverá ser exibido corretamente.
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Preencha o formulário, faça uma conversão e confirme que o Lead foi enviado corretamente para sua Base de Leads no RDSM 🥳
