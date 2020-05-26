@@ -46,7 +46,8 @@ O código foi inserido dentro dessa função para nos certificarmos que o mesmo 
 Acesse a página onde o formulário foi inserido. Neste ponto o formulário já deverá ser capturado pelo nosso script.
 
 Lembrando que pra que tudo funcione:
-1. O formulário precisa de ao menos um campo com o type ou name="email".
-2. O botão precisa ter o atributo type="submit".
+1. O formulário precisa conter as tags `<form></form>`.
+2. O formulário precisa de ao menos um campo com o type ou `name="email"`.
+3. O botão precisa ter o atributo `type="submit"`.
 
 Preencha o formulário, faça uma conversão e confirme que o Lead foi enviado corretamente para sua Base de Leads no RDSM 🥳
