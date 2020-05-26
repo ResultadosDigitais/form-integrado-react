@@ -13,7 +13,7 @@ Esta etapa é necessária para continuar com os procedimentos descritos a seguir
 
 Após a [Instalação do código de monitoramento](https://app.rdstation.com.br/configuracoes/analise-e-monitoramento), acesse a opção 2b: `Eu quero fazer a configuração por conta própria.`
 
-Copie e guarde o a `tag script`:
+Copie e guarde a `tag script`:
 
 ```html
 <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/809c4587-2f49-4369-af07-51827d368123-loader.js" ></script>
