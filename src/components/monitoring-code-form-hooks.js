@@ -5,8 +5,6 @@ export const MonitoringCodeFormHooks = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://d335luupugsy2.cloudfront.net/js/loader-scripts/7d1897c6-e72c-4c2d-b15a-36916776e5e7-loader.js";
@@ -35,7 +33,6 @@ export const MonitoringCodeFormHooks = () => {
                 name="name" />
             </label>
           </p>
-
           <p>
             <label>
               Email:&nbsp;&nbsp;
@@ -47,13 +44,11 @@ export const MonitoringCodeFormHooks = () => {
                 type="email" />
             </label>
           </p>
-
           <input type="submit" value="Enviar" />
         </form>
       </header>
     </div>
   );
 }
-
 
 export default MonitoringCodeFormHooks;
