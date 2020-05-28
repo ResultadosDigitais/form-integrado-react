@@ -39,6 +39,17 @@ componentDidMount () {
 }
 ```
 
+Caso utilize a sintaxe de functional components, insira o seguinte código dentro do Hook `useEffect` utilizando o endereço copiado:
+
+```js
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://d335luupugsy2.cloudfront.net/js/loader-scripts/7d1897c6-e72c-4c2d-b15a-36916776e5e7-loader.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, [])
+```
+
 O código foi inserido dentro dessa função para nos certificarmos que o mesmo só será executado depois que o componente tenha sido devidamente renderizado e que todos os elementos estão prontos.
 
 ### Passo 3
@@ -49,5 +60,6 @@ Lembrando que pra que tudo funcione:
 1. O formulário precisa conter as tags `<form></form>`.
 2. O formulário precisa de ao menos um campo com o type ou `name="email"`.
 3. O botão precisa ter o atributo `type="submit"`.
+4. Evite cancelar o evento de submit com funções como preventDefault()
 
 Preencha o formulário, faça uma conversão e confirme que o Lead foi enviado corretamente para sua Base de Leads no RDSM 🥳
