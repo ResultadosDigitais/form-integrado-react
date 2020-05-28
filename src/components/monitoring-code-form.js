@@ -15,7 +15,7 @@ class MotitoringCodeForm extends Component {
         <header className="App-header">
           <p>Integração de formulário RDSM<br />Via código de monitoramento</p>
 
-          <form  onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <p>
               <label>
                 Nome:&nbsp;

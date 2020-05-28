@@ -5,7 +5,7 @@ class Navbar extends Component {
   render() {
     return (
       <div className="navbar">
-        <a className="brand">RDMS</a>
+        <a className="brand">RDSM</a>
 
         <Link to="/integrated-form">Formulário integrado</Link>
         <Link to="/monitoring-code-form">Formulário via código de monitoramento</Link>
