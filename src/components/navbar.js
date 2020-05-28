@@ -9,6 +9,7 @@ class Navbar extends Component {
 
         <Link to="/integrated-form">Formulário integrado</Link>
         <Link to="/monitoring-code-form">Formulário via código de monitoramento</Link>
+        <Link to="/monitoring-code-form-hooks">Formulário via código de monitoramento (Sintaxe de Hooks)</Link>
       </div>
     );
   }
