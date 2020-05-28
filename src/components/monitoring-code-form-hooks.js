@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-export const MonitoringCodeFormHooks = () => {
+const MonitoringCodeFormHooks = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
